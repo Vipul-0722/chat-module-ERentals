@@ -1,10 +1,13 @@
 const Message = require("../model/Message")
 const saveMsg = async (data) => {
   try {
-    const saveMsg = new Message(data)
-    // await saveMsg.save()
+    const msgData = JSON.parse(data)
+    console.log(msgData, "data")
+    const saveMsg = new Message(msgData)
+    await saveMsg.save()
     return saveMsg
   } catch (error) {
+    console.log("cant save data in db", error)
     //   res.status(500).send({ msg: "Internal Server Error" })
   }
 }
